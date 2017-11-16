@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/location_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="位置请求" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:id="@+id/contentPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="姓名" />
+
+            <EditText
+                android:id="@+id/name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="120dp"
+                android:inputType="none" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contentPanel"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="号码" />
+
+            <EditText
+                android:id="@+id/phone_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="120dp"
+                android:inputType="none" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/contact_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/contentPanel"
+            android:src="@mipmap/downbar_mine_hl" />
+
+    </RelativeLayout>
+
+</LinearLayout>

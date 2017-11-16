@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CoordinateTest</string>
+    <string name="title_activity_main">MainActivity</string>
+    
+    <string name="sipnner1">选择省</string>
+    <string name="sipnner2">选择市</string>
+    <string name="sipnner3">选择区</string>
+</resources>

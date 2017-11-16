@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingTop="10dp">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择省"
+        android:textColor="@android:color/black" />
+
+    <Spinner
+        android:id="@+id/province_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:overScrollMode="never"
+        android:prompt="@string/sipnner1"
+        android:spinnerMode="dropdown"></Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="选择市"
+        android:textColor="@android:color/black" />
+
+    <Spinner
+        android:id="@+id/city_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:overScrollMode="never"
+        android:prompt="@string/sipnner2"
+        android:spinnerMode="dropdown"></Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="选择区"
+        android:textColor="@android:color/black" />
+
+    <Spinner
+        android:id="@+id/area_spinner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:overScrollMode="never"
+        android:prompt="@string/sipnner3"
+        android:spinnerMode="dropdown"></Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="详细地址填写" />
+
+    <EditText
+        android:id="@+id/address_info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
