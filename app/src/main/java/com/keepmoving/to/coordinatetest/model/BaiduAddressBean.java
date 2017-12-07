@@ -2,9 +2,11 @@ package com.keepmoving.to.coordinatetest.model;
 
 /**
  * Created by caihanyuan on 2017/11/16.
+ *
+ * 百度
  */
 
-public class AddressBean {
+public class BaiduAddressBean {
 
     /**
      * status : OK

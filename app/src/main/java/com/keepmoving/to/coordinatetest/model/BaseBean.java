@@ -2,6 +2,8 @@ package com.keepmoving.to.coordinatetest.model;
 
 /**
  * Created by caihanyuan on 2017/11/15.
+ * <p>
+ * 省市区实体类的基类
  */
 
 public class BaseBean {

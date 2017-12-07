@@ -1,4 +1,4 @@
-package com.keepmoving.to.coordinatetest;
+package com.keepmoving.to.coordinatetest.address;
 
 import android.location.Location;
 import android.text.TextUtils;
@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.keepmoving.to.coordinatetest.model.AddressBean;
+import com.keepmoving.to.coordinatetest.model.BaiduAddressBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +23,8 @@ import retrofit2.http.QueryMap;
 
 /**
  * Created by caihanyuan on 2017/11/16.
+ * <p>
+ * 根据GPS获取的经纬度，调用百度的地址转换接口获取地址信息
  */
 
 public class BaiduAddress {
@@ -31,13 +33,16 @@ public class BaiduAddress {
 
     private AddressCallback mAddressCallback;
 
-    public void setAddressCallback(AddressCallback addressCallback) {
+    void setAddressCallback(AddressCallback addressCallback) {
         mAddressCallback = addressCallback;
     }
 
-    public void getAddress(Location location) {
+    void getAddress(Location location) {
         if (location == null)
             return;
+
+        //经纬度坐标系转换成百度坐标系
+        double[] bdLoc = CoordinateTransformUtil.wgs84tobd09(location.getLongitude(), location.getLatitude());
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -58,31 +63,33 @@ public class BaiduAddress {
         IAddressService addressService = retrofit.create(IAddressService.class);
         Map<String, String> params = new HashMap<>(2);
         params.put("output", "json");
-        params.put("location", location.getLatitude() + "," + location.getLongitude());
-        Call<AddressBean> call = addressService.getAddress(params);
-        call.enqueue(new Callback<AddressBean>() {
+        params.put("location", bdLoc[1] + "," + bdLoc[0]);
+        Call<BaiduAddressBean> call = addressService.getAddress(params);
+        call.enqueue(new Callback<BaiduAddressBean>() {
             @Override
-            public void onResponse(Call<AddressBean> call, Response<AddressBean> response) {
-                AddressBean addressBean = response.body();
+            public void onResponse(Call<BaiduAddressBean> call, Response<BaiduAddressBean> response) {
+                BaiduAddressBean addressBean = response.body();
                 if (TextUtils.equals("OK", addressBean.getStatus()) && mAddressCallback != null) {
                     mAddressCallback.onGetAddressSuccess(addressBean);
                 }
             }
 
             @Override
-            public void onFailure(Call<AddressBean> call, Throwable t) {
+            public void onFailure(Call<BaiduAddressBean> call, Throwable t) {
                 Log.e(TAG, t.toString());
             }
         });
     }
 
 
-    public interface IAddressService {
+    interface IAddressService {
         @GET("geocoder")
-        Call<AddressBean> getAddress(@QueryMap Map<String, String> params);
+        Call<BaiduAddressBean> getAddress(@QueryMap Map<String, String> params);
     }
 
     interface AddressCallback {
-        void onGetAddressSuccess(AddressBean addressBean);
+        void onGetAddressSuccess(BaiduAddressBean addressBean);
+
+        void onGetAddressFaile();
     }
 }

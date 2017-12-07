@@ -2,9 +2,11 @@ package com.keepmoving.to.coordinatetest.model;
 
 /**
  * Created by caihanyuan on 2017/11/15.
+ * <p>
+ * 市
  */
 
-public class City extends BaseBean {
+public class CityBean extends BaseBean {
     private String province;
 
     public String getProvince() {

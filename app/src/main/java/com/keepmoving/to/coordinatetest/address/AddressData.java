@@ -1,12 +1,12 @@
-package com.keepmoving.to.coordinatetest;
+package com.keepmoving.to.coordinatetest.address;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.JsonReader;
 
-import com.keepmoving.to.coordinatetest.model.Area;
-import com.keepmoving.to.coordinatetest.model.City;
-import com.keepmoving.to.coordinatetest.model.Province;
+import com.keepmoving.to.coordinatetest.model.AreaBean;
+import com.keepmoving.to.coordinatetest.model.CityBean;
+import com.keepmoving.to.coordinatetest.model.ProvinceBean;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,13 +29,13 @@ import java.util.TreeMap;
  * 百度地图省市区excel表格：http://lbsyun.baidu.com/index.php?title=open/dev-res
  */
 
-public class AreaDataUtil {
+public class AddressData {
 
-    private static Map<String, Province> mProvince;
+    private static Map<String, ProvinceBean> mProvince;
 
-    private static Map<String, List<City>> mCitys;
+    private static Map<String, List<CityBean>> mCitys;
 
-    private static Map<String, List<Area>> mAreas;
+    private static Map<String, List<AreaBean>> mAreas;
 
     /**
      * 读取省市区信息到内存
@@ -56,7 +56,7 @@ public class AreaDataUtil {
             jsonReader.beginArray();
             while (jsonReader.hasNext()) {
                 jsonReader.beginObject();
-                Province province = new Province();
+                ProvinceBean province = new ProvinceBean();
                 while (jsonReader.hasNext()) {
                     String keyname = jsonReader.nextName();
                     if ("id".equals(keyname)) {
@@ -77,10 +77,10 @@ public class AreaDataUtil {
             jsonReader.beginObject();
             while (jsonReader.hasNext()) {
                 String provinceId = jsonReader.nextName();
-                List<City> cityList = new ArrayList<>();
+                List<CityBean> cityList = new ArrayList<>();
                 jsonReader.beginArray();
                 while (jsonReader.hasNext()) {
-                    City city = new City();
+                    CityBean city = new CityBean();
                     jsonReader.beginObject();
                     while (jsonReader.hasNext()) {
                         String keyName = jsonReader.nextName();
@@ -107,10 +107,10 @@ public class AreaDataUtil {
             jsonReader.beginObject();
             while (jsonReader.hasNext()) {
                 String cityId = jsonReader.nextName();
-                List<Area> areaList = new ArrayList<>();
+                List<AreaBean> areaList = new ArrayList<>();
                 jsonReader.beginArray();
                 while (jsonReader.hasNext()) {
-                    Area area = new Area();
+                    AreaBean area = new AreaBean();
                     jsonReader.beginObject();
                     while (jsonReader.hasNext()) {
                         String keyName = jsonReader.nextName();
@@ -135,15 +135,15 @@ public class AreaDataUtil {
         }
     }
 
-    public static List<Province> getProvinces() {
+    public static List<ProvinceBean> getProvinces() {
         return new ArrayList(mProvince.values());
     }
 
-    public static List<City> getCitys(String provinceId) {
+    public static List<CityBean> getCitys(String provinceId) {
         return mCitys.get(provinceId);
     }
 
-    public static List<Area> getAreas(String cityId) {
+    public static List<AreaBean> getAreas(String cityId) {
         return mAreas.get(cityId);
     }
 }

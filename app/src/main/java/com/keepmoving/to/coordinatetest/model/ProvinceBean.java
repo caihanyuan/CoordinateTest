@@ -1,6 +1,12 @@
 package com.keepmoving.to.coordinatetest.model;
 
-public class Province extends BaseBean {
+/**
+ * Created by caihanyuan on 2017/12/4.
+ * <p>
+ *
+ * 省
+ */
+public class ProvinceBean extends BaseBean {
     private String id;
     private String name;
 
@@ -22,7 +28,7 @@ public class Province extends BaseBean {
 
     @Override
     public String toString() {
-        return "Province{" +
+        return "ProvinceBean{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
